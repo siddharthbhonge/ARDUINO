@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+
+int main()
+{
+	int cpid;
+	printf("The main program process ID is given by %d \n",(int)getpid());
+	cpid= fork();
+	if(cpid=0)
+{
+	printf ("this is the parent's process with ID=%d \n ",(int)getpid());
+	return(0);
+
+}
+
+else 
+	 printf("this is the child  process with id =%d \n ",(int)getpid());
+                  
+}
+
+
+***OUTPUT****
+
+The main program process ID is given by 2336 
+this is the parent  process with id =2336 
+ administrator@ubuntu:~$ this is the child  process with id =2337 
+

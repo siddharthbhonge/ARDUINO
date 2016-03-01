@@ -1,0 +1,83 @@
+#!/bin/sh
+clear
+echo "enter two number "
+read a
+read b
+while true
+do
+echo " 1. Addition \n2. substraction \n3. Multiply \n4. Divide \n5. Command window"
+echo " \nEnter Your Choice "
+read m
+case $m in
+1 ) c=$((a+b))
+echo " addition = $c";;
+2 ) c=$((a-b))
+echo "substraction = $c";;
+3 ) c=$((a*b))
+echo " multiplication = $c";;
+4 ) c=$((a/b))
+echo " divide = $c";;
+5 ) exit 1;;
+esac
+m=0
+done
+
+
+
+
+********************* OUTPUT *******************
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+student@ubuntu:~$ sh shell.sh
+Enter Two Number 
+8
+4
+1. Addition 
+2. substraction 
+3. Multiply 
+4. Divide 
+5. Exit
+ 
+Enter Your Choice 
+1
+addition = 12
+1. Addition 
+2. substraction 
+3. Multiply 
+4. Divide 
+5. Exit
+ 
+Enter Your Choice 
+2
+substraction = 4
+1. Addition 
+2. substraction 
+3. Multiply 
+4. Divide 
+5. Exit
+ 
+Enter Your Choice 
+3
+ multiplication = 32
+1. Addition 
+2. substraction 
+3. Multiply 
+4. Divide 
+5. Exit
+ 
+Enter Your Choice 
+4
+ divide = 2
+1. Addition 
+2. substraction 
+3. Multiply 
+4. Divide 
+5. Exit
+ 
+Enter Your Choice 
+5
+student@ubuntu:~$ 
+
+

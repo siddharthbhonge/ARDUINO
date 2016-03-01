@@ -1,0 +1,76 @@
+#include<stdio.h>
+
+void main()
+
+
+{
+int i=0,j=0,k=0,l=0;
+
+char al[20],id[20],op[20],cons[20];
+
+
+printf("enter the input equation:\n");
+
+scanf("%s",al);
+
+printf("The entered equation is:\n");
+
+puts(al);
+
+
+for(i=0;i<6;i++)
+
+{
+if(isalpha(al[i]))
+
+ {
+id[k]=al[i];
+k++;
+ }
+
+else if(isdigit(al[i]))
+
+   {
+	cons[j]=al[i];
+	j++;
+
+   }
+
+else
+{
+op[l]=al[i];
+l++;
+}
+
+}
+
+id[k]='\0';
+
+printf("identifiers are: %s\n",id);
+
+printf("operators are: \n");
+
+puts(op);
+
+printf("constants are: \n");
+
+puts(cons);
+
+}
+
+
+
+----------------------output--------------------------
+
+enter the input equation
+a+b=35
+
+The entered equation is:
+a+b=35
+
+identifiers are: ab
+
+operators are: +=
+
+constants are: 35
+

@@ -41,3 +41,21 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.cof
+*.mcs
+transmitter.mcp
+*.mcw
+transmitter.hex
+*.map
+transmitter.o
+*.docx
+*.pdf
+*.jpg
+t o use/final team layout.xlsx
+*.pptx
+New Text Document.txt
+dsp/dsp/exp41.rtf
+*.png
+dsp/dsp/exp4b.rtf
+*.rtf
+*.IDX

@@ -1,0 +1,89 @@
+  /*code for fcfs*/
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+char p[10][10];
+int tot=0,wt[10],i,n,pt[10],at[10],tt[10],st[10],ft[10];
+float avg=0;
+clrscr();
+printf("ENTER NO. OF PROCESSES:");
+scanf("%d",&n);
+at[0]=0;
+for(i=0;i<n;i++)
+{
+printf("Enter process%d name ,arrival time, process time,finish time:\n",i+1);
+scanf("%s",p[i]);
+scanf("%d",&at[i]);
+scanf("%d",&pt[i]);
+scanf("%d",&ft[i]);
+}
+for(i=0;i<n;i++)
+{
+tt[i]=ft[i]-at[i];
+}
+wt[0]=0;
+for(i=1;i<n;i++)
+{
+wt[i]=tt[i]-pt[i];
+tot=tot+wt[i];
+}
+avg=(float)tot/n;
+printf("p_name\t a_time\t p_time\t w_time\t t_time\t f_time\n ");
+for(i=0;i<n;i++)
+printf("%s\t %d\t %d\t %d\t %d\t %d\n",p[i],at[i],pt[i],wt[i],tt[i],ft[i]);
+printf("total waiting time=%d\n avg waiting time=%f", tot,avg);
+getch();
+}
+
+*****OUTPUT*****
+
+ENTER NO. OF PROCESSES:5
+Enter process1 name ,arrival time, process time,finish time:
+p1
+0
+3
+3
+Enter process2 name ,arrival time, process time,finish time:
+p2
+1
+5
+8
+Enter process3 name ,arrival time, process time,finish time:
+p3
+3
+2
+10
+Enter process4 name ,arrival time, process time,finish time:
+p4
+9
+5
+15
+Enter process5 name ,arrival time, process time,finish time:
+p5
+12
+5
+20
+p_name   a_time  p_time  w_time  t_time  f_time
+ p1      0       3       0       3       3
+p2       1       5       2       7       8
+p3       3       2       5       7       10
+p4       9       5       1       6       15
+p5       12      5       3       8       20
+total waiting time=11
+ avg waiting time=2.200000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

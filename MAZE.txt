@@ -1,0 +1,292 @@
+
+int analogpin1=A1;
+int analogpin2=A2;
+int analogpin3=A3;
+int analogpin4=A4;
+int analogpin5=A5;    //object sensor
+int lm1=1;
+int lm2=2;
+int rm1=3;
+int rm2=4;
+char initial_path[50];
+char solved[50];
+int path_length=0;
+char a[50];
+char b;
+int vall=0;
+int valL=0;
+int valc=0;
+int valr=0;
+int valR=0;
+int valS=0;
+int i=0;
+int k=0;
+int flag=0;
+
+
+void setup()
+{pinMode(lm1,OUTPUT);
+pinMode(lm2,OUTPUT);
+pinMode(rm1,OUTPUT);
+pinMode(rm2,OUTPUT);
+}
+
+void lturn()
+{
+  digitalWrite(lm1,LOW);
+  digitalWrite(rm1,HIGH);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  initial_path[path_length]='L';
+  path_length++;
+  delay(1000);
+}
+
+void rturn()
+{
+  digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,LOW);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  initial_path[path_length]='R';
+  path_length++;
+  delay(1000);
+}
+
+void straight()
+{
+  digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,HIGH);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  initial_path[path_length]='S';
+  path_length++;
+ 
+}
+
+void back()
+{
+  digitalWrite(lm1,LOW);
+  digitalWrite(rm1,HIGH);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  initial_path[path_length]='B';
+  path_length++;
+   if(vall>400 && valc>400 && valr>400)
+  {
+  digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,LOW);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  }
+  delay(1000);
+}
+
+char simplify(char a[])
+{
+  if(path_length<3 || a[path_length-2]!='B')
+  {
+    return a[path_length];
+  }
+  else
+  {
+  if(a[path_length-1]=='L' && a[path_length+1]=='R')
+      {
+        b='B';
+      }
+      if(a[path_length-1]=='L' && a[path_length+1]=='S')
+      {
+        b='R';
+      }
+      if(a[path_length-1]=='R' && a[path_length+1]=='L')
+      {
+        b='B';
+      }
+      if(a[path_length-1]=='S' && a[path_length+1]=='L')
+      {
+        b='R';
+      }
+      if(a[path_length-1]=='S' && a[path_length+1]=='S')
+      {
+        b='B';
+      }
+      if(a[path_length-1]=='L' && a[path_length+1]=='L')
+      {
+        b='S';
+      }
+      a[path_length]=b;
+      path_length=path_length-2;
+      return a[path_length];
+      simplify(a);
+  }
+}
+
+void line_tracer()
+{
+  if (valc < 400 && vall > 400 && valr > 400)  // GO FORWARD
+   {
+    digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,HIGH);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  
+    delay(10);
+   }
+    else if(valc < 400 && vall < 400 && valr < 400) // GO FORWARD
+   {
+    digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,HIGH);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  
+    delay(10);
+   }
+    else if(valc > 400 && vall > 400 && valr > 400)
+   { 
+    digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,LOW);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  
+    delay(10);
+   }
+    else if(valc > 400 && vall < 400 && valr > 400)  // TURN LEFT
+   {
+    digitalWrite(lm1,LOW);
+  digitalWrite(rm1,HIGH);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  delay(10);
+   }
+    else if(valc < 400 && vall < 400 && valr > 400)  // TURN LEFT
+   { 
+    digitalWrite(lm1,LOW);
+  digitalWrite(rm1,HIGH);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  delay(10);
+   } 
+    else if(valc > 400 && vall > 400 && valr < 400)  // TURN RIGHT
+   {
+    digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,LOW);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  
+    delay(10);
+   }
+    else if(valc < 400 && vall > 400 && valr < 400)  // TURN RIGHT
+   {
+    digitalWrite(lm1,HIGH);
+  digitalWrite(rm1,LOW);
+  digitalWrite(lm2,LOW);
+  digitalWrite(rm2,LOW);
+  delay(10);
+  }
+}
+
+
+void loop()
+
+{
+   
+  
+ 
+ 
+  vall=analogRead(analogpin0);
+  valc=analogRead(analogpin1);
+  valr=analogRead(analogpin2);
+  valL=analogRead(analogpin3);
+  valR=analogRead(analogpin4);
+  valS=analogRead(analogpin5);
+  
+  if(valS<0)
+  {
+    flag=1;
+  }
+  if(flag==0)
+  {
+    line_tracer();  
+    if(valL<400)
+    {
+    lturn();
+     if(vall>400 && valc>400 && valr>400)
+     {
+        digitalWrite(lm1,LOW);
+        digitalWrite(rm1,HIGH);
+        digitalWrite(lm2,LOW);
+        digitalWrite(rm2,LOW);
+      }
+    delay(200);
+    }
+    
+  if(valL>400 && valc<400 && valR<400)
+ 
+  {
+      straight();
+     if(vall>400 && valc>400 && valr>400)
+   {
+    digitalWrite(lm1,HIGH);
+    digitalWrite(rm1,HIGH);
+    digitalWrite(lm2,LOW);
+    digitalWrite(rm2,LOW);
+   }
+   delay(200);
+  }
+  
+  
+  
+  
+  if(valL>400 && vall>400 && valc>400 && valr>400 && valR>400)
+  {
+     back();
+     
+   
+    delay(200);
+  }
+  
+  
+  
+    
+   
+   
+    
+  if(valL>400 && vall>400 && valc>400 && valr>400 && valR>400)
+  {
+    rturn();
+   
+   if(vall>400 && valc>400 && valr>400)
+   {
+    digitalWrite(lm1,HIGH);
+    digitalWrite(rm1,LOW);
+    digitalWrite(lm2,LOW);
+    digitalWrite(rm2,LOW);
+   }
+  delay(200);
+  }
+  }
+  else
+  {
+    simplify(initial_path);
+    line_tracer();
+    
+    if(valL<400 || valR<400)
+    {
+      if(initial_path[k]='L')
+      {
+        lturn();
+        k++;
+      }
+      if(initial_path[k]='R')
+      {
+        rturn();
+        k++;
+      }
+      if(initial_path[k]='S')
+      {
+        straight();
+        k++;
+      }
+    }
+}
+}

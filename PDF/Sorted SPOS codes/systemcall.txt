@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main()
+	{
+		int a;
+		a= system("ls -l");
+		return a;
+
+	}
+
+
+******output******
+
+total 10
+-rw-r--r-- 1 administrator administrator   46 2015-07-03 11:07 144.c
+-rw-r--r-- 1 administrator administrator   48 2015-07-03 11:01 1450.C
+-rw-r--r-- 1 administrator administrator   53 2015-07-03 11:09 145.c
+-rw-r--r-- 1 administrator administrator  437 2014-09-30 15:19 1.c
+drwxr-xr-x 2 administrator administrator 4096 2015-07-07 11:58 7Ampere
+-rw-r--r-- 1 administrator administrator  534 2014-09-15 11:40 abc.c
+-rw-r--r-- 1 administrator administrator  552 2014-09-15 12:11 a.c
+-rw-r--r-- 1 administrator administrator   65 2015-07-03 11:40 add.c
+-rw-r--r-- 1 administrator administrator  110 2015-07-03 11:36 add.cyy
+-r-xrwxrwx 1 administrator administrator   80 2015-07-03 11:54 add.sh
+
